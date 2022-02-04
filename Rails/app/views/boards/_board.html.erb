@@ -1,0 +1,26 @@
+<div class="card">
+  <div class="card-header">
+    <h4><%= board.title %></h4>
+    <% board.tags.each do |tag| %>
+      <span class="badge badge-primary"><%= tag.name %></span>
+    <% end %>
+  </div>
+  <div class="card-body">
+    <p class="card-text">
+      <%= simple_format(board.body) %>
+    </p>
+    <p class="text-right font-weight-bold mr-10"><%= board.name %></p>
+    <div class="text-right">
+
+      <%# いいねぼたん %>
+      <%= form_for @board do |f|%>
+        <%= f.hidden_field :good, value: board.good %>
+        <%= f.submit '💕 x ' << board.good.to_s , class: 'btn btn-success btn-sm' %>
+        <%# 下と上は同じ %>
+        <button class="btn btn-sm">💕 x <%= board.good %> </button>
+      <% end %>
+
+
+    </div>
+  </div>
+</div>
